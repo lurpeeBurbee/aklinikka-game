@@ -7,6 +7,8 @@ Live server
 JavaScript (ES6) code snippets
 GitHub actions
 
-Päivityksen Development:iin
+Päivitykset Development:iin
 
 Lauri hoitaa Masterin ja Lauri:n.
+
+UUSIN PÄIVITYS
