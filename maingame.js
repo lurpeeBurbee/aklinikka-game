@@ -49,9 +49,10 @@ function resetBall(startX) {
 }
 
 function gameloop() {
-  // drawBall();
+  drawBall();
   drawButtons();
 }
+requestAnimationFrame(gameloop);
 
 function drawButtons() {
   uictx.clearRect(0, 0, uicanvas.width, uicanvas.height);
@@ -99,8 +100,6 @@ function drawButtons() {
     (uicanvas.height + buttonHeight * 0.2) / 2
   );
 }
-
-requestAnimationFrame(gameloop);
 
 function handleButtonHover(event) {
   const rect = uicanvas.getBoundingClientRect();
