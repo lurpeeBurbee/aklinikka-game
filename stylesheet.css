@@ -6,10 +6,10 @@ body {
 
 .maincontainer {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  top: 2%;
+  left: 5%;
+  width: 89vw;
+  height: 99vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -17,6 +17,7 @@ body {
 
 .canvas-container-bg,
 .canvas-container-ui {
+  display: flex;
   width: 100%;
   position: relative;
   justify-content: center;
@@ -28,6 +29,14 @@ body {
 }
 .canvas-container-ui {
   flex: 1;
+}
+.canvas-container-gameobjects {
+  width: 100%;
+  display: block;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 #background-canvas {
@@ -48,7 +57,7 @@ body {
   bottom: 0;
 }
 
-/* #gameobjects-canvas {
+#gameobjects-canvas {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -56,15 +65,16 @@ body {
   width: 50%;
   height: 50%;
   background-color: purple;
-} */
+}
 
 .canvas-text {
-  position: relative;
+  position: absolute;
   color: rgb(255, 255, 255);
-  font-size: 24px;
+  font-size: 100%;
   font-weight: bold;
   border: 1px solid;
   width: 100%;
   z-index: 1;
-  bottom: 3em;
+  top: 50%;
 }
+ 

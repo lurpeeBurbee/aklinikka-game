@@ -23,7 +23,7 @@ window.addEventListener("resize", () => {
     document.getElementById("background-canvas").offsetHeight;
 });
 
-let speedY = -2;
+let speedY = 0;
 
 function drawBall() {
   bgctx.clearRect(0, 0, bgcanvas.width, bgcanvas.height);
@@ -36,7 +36,7 @@ function drawBall() {
 
   y += speedY;
 
-  if (y < -bgcanvas.width * 0.02) {
+  if (y < -bgcanvas.width * 0.05) {
     y = bgcanvas.height;
   }
 
@@ -47,7 +47,7 @@ function resetBall(startX) {
   x = startX;
   y = bgcanvas.height;
 }
-
+// GAME LOOP:
 function gameloop() {
   drawBall();
   drawButtons();
