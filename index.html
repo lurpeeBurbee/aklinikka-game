@@ -1,27 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>aklinikka-game</title>
-    <link rel="stylesheet" href="stylesheet.css" />
+    <title>A-klinikka: The Game</title>
+    <!-- NOTE: stylesheet link-->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <head>
+      <link rel="icon" href="images/icons/exclamation.png" type="image/png" />
+    </head>
   </head>
   <body>
-    <div class="maincontainer">
-      <div class="canvas-container-bg">
-        <canvas id="background-canvas"></canvas>
-        <h1 class="canvas-text">Background Canvas</h1>
+    <div id="gameCanvasWrapper">
+      <canvas id="gameCanvasMobile" class="mobile-canvas"></canvas>
+      <canvas id="gameCanvasDesktop" class="desktop-canvas"> </canvas>
+      <div class="button leftbutton" onclick="movePlayer()">
+        <p>Liikuta smileytä</p>
       </div>
-      <div class="canvas-container-ui">
-        <canvas id="ui-canvas"></canvas>
-        <h1 class="canvas-text">UI Canvas</h1>
+      <script type="module">
+        import { movePlayer } from "/js/maingame.js";
+      </script>
+      <!-- NOTE: This element and its functions could also be inside the game loop.
+        The element being here in the index.html makes it a fixed element so it won't
+        consume resources in the game loop. It will be read only once when the game loads
+        and everytime it's clicked -->
+      <div class="button rightbutton" onclick="drawBackgroundImage()">
+        <p>Seuraava tilanne</p>
       </div>
-      <div class="canvas-container-gameobjects">
-        <canvas id="gameobjects-canvas"></canvas>
-        <h1 class="canvas-text">Game Objects Canvas</h1>
+      <!-- <script type="module"> import { switchBackground } from '/js/maingame.js';</script> -->
+
+      <div class="title">
+        <p>Hukkaputki</p>
+      </div>
+      <div class="mobileicons">
+        <img src="images/icons/mobile-icon.png" />
+        <img src="images/icons/tablet.png" />
+      </div>
+      <div class="startinfo">
+        <p>
+          Peli toimii mobiililla ja tabletilla. Pienennä ruutua käynnistääksesi
+          pelin.
+        </p>
       </div>
     </div>
+    <div class="textinfo"><p>Text info</p></div>
+    <div class="coordinatesinfo"><p>Kukkuu</p></div>
 
-    <script src="/maingame.js" type="text/javascript"></script>
+    <!-- NOTE: All the scripts needed in the game:-->
+    <script src="js/maingame.js" type="module"></script>
+    <script src="js/classes/button.js" type="module"></script>
+    <script src="/js/modules/backgrounds.js" type="module"></script>
   </body>
 </html>

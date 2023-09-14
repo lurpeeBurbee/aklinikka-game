@@ -1,0 +1,75 @@
+Itse rakennettava koodilla:
+
+Alustus (HTML, CSS)
+
+Frames per second
+Pelialueen reunat
+Kiihtyminen ja vauhti
+Colliderit
+Input (keyboard, touch)
+Äänet
+Efektit
+
+TODO: Mobile "Add to home screen"? (the game's shortcut on phone)
+
+Local host on phone:
+192.168.1.102:5500
+
+Inner browser:
+https://www.youtube.com/watch?v=SoiPVysSlWs
+
+Documentation://TODO:
+Esim. Draw.io-linkki
+
+Plugins for coders:
+BITO AI
+Live Server
+Prettier
+ESLint
+JavaScript (ES6)
+Highlight 2: (NOTE, WARNING, HACK, FIXME, INFO etc..)
+File > Preferences > Settings. On the left, scroll down to TODO highlight. Click the link "Edit in settings.json". Check examples.
+
+Plugins for designers:
+Image Preview
+
+Kikka-kakkoset:
+
+1. Prefer RequesAnimationFrame() instead of SetInterval()
+   https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
+   SetInterval can be used in more specific cases to gain more control over the framerate:
+   https://www.w3schools.com/jsref/met_win_setinterval.asp
+
+2. Event Listener works mainly on default DOM elements. If you need to listen to instantiated objects (firstbutton.addEventListener('resize', () =>
+   console.log(firstbutton.width, firstbutton.height));) put it inside updateGame loop. Otherwise it will only log the message once.
+3. Can't use a function or variable from game.js in index.html (check case drawBackgroundImage). Add "window.drawBackgroundImage = drawBackgroundImage" to the same file where the function has been declared. This makes it global.
+
+---
+
+Common errors:
+Modulit ei importtaannu.
+"... was blocked because of a disallowed MIME type (text/html)"
+
+Kokeile kaikki path-vaihtoehdot:
+./
+../
+/
+
+---
+
+vscode.dev-link on kätevä: kirjoita TODO:, FIXME: tms. > oik. hiiri > share > pastee linkki minne vaan koodia. Linkki avautuu browserissa.
+
+By default, clicking on a vscode.dev-link will open the browser version of Visual Studio Code (VSCode) and navigate to the specific line of code.
+However, if you prefer to open the link in the VSCode application itself, you can follow these steps:
+
+1. Copy the vscode.dev-link URL by right-clicking on the link and selecting "Copy link address" or a similar option.
+2. Open the VSCode application on your computer.
+3. In the VSCode menu, go to "File" > "Add Folder to Workspace" or use the keyboard shortcut Ctrl+K Ctrl+O (Cmd+K Cmd+O on macOS).
+4. Choose a folder on your computer to add to the workspace. This step is necessary to enable the option to open external links in the VSCode application.
+5. Once the folder is added to the workspace, go to "File" > "Open Folder" or use the keyboard shortcut Ctrl+K Ctrl+O (Cmd+K Cmd+O on macOS).
+6. In the file explorer, navigate to the folder where the file corresponding to the vscode.dev-link URL is located.
+7. Open the file that contains the line referenced by the vscode.dev-link.
+8. In the file, go to the line referenced by the vscode.dev-link.
+9. Now, you can click on the vscode.dev-link URL, and it should open the link in the VSCode application itself, taking you to the specific line of code.
+
+By following these steps, you can open vscode.dev-links directly in the VSCode application, allowing you to navigate to specific lines of code within your project.
