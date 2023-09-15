@@ -97,55 +97,87 @@ canvasDesktop.addEventListener("canvasVisibilityChange", function () {
 
 // Player sprite image
 const player = new Image(); // Create new img element
-player.src = "/images/sprites/smiley-icon.png";
+player.src = "/images/sprites/animation-template.png";
 let playerX = 0;
 let playerY = 0;
 let playerWidth = 0;
 let playerHeight = 0;
-let playerExtraWidth = 0;
-let canIncrease = true;
+let startFrameIndex = 0;
+let timer = 0;
+
+// Player animation spritesheet control:
+
+const playerStartFrames = [0, 90, 180];
+// INFO: The variables if you want to scale the player width in a loop. The idle animation code is commented out below.
+// let playerExtraWidth = 0;
+// let canIncrease = true;
+//----------------------
 const coordinatesInfo = document.querySelector(".coordinatesinfo p");
 
 // Create game object images
-function drawPlayerImage() {
-  ctx.clearRect(playerX, playerY, playerWidth, canvas.width, canvas.height);
-  playerWidth = 120 + playerExtraWidth;
-  playerHeight = 120;
+function drawStaticPlayerImage() {
+  // INFO: Clear the drawn image in one frame using the area defined with parameters:
+  ctx.clearRect(playerX, playerY, playerWidth, playerHeight);
+  //playerWidth = 120 + playerExtraWidth; INFO: For the idle animation
+  playerWidth = 270;
+  playerHeight = 90;
 
   //INFO: Show the player coordinates in the element below the game canvas
-  coordinatesInfo.textContent = ` Smiley moves: x: ${Math.round(
+  coordinatesInfo.textContent = ` Player location: x: ${Math.round(
     playerX
   )} y: ${Math.round(playerY)}`;
 
-  // WARNING: Objects stack up on each other, thus the BG-image must be drawn first. Otherwise it will cover everything.
-  // example:
+  // WARNING: Objects stack up on each other, thus the BG-image must be drawn first.
+  // Otherwise the first image will cover everything.
+  // Example:
   //ctx.drawImage(background-image);
-  // ctx.drawImage(player-image);
+  // ctx.drawImage(player);
   // ctx.drawImage(smoke-in-front);
   ctx.drawImage(player, playerX, playerY, playerWidth, playerHeight); //INFO: Parameters: Image to draw, x- and y-coordinates, width and height
 
-  if (playerX > canvas.width - 100) {
-    playerX = 0; // Return back
+  // Create animation on the lower Player:
+  timer++;
+  if (timer >= 30) {
+    timer = 0;
+    startFrameIndex++;
   }
 
-  // Idle animation:
+  if (startFrameIndex == 3) {
+    startFrameIndex = 0;
+  }
+  ctx.drawImage(
+    player,
+    playerStartFrames[startFrameIndex],
+    0,
+    90,
+    90,
+    playerX,
+    playerY + 100,
+    90,
+    playerHeight
+  );
 
-  if (playerWidth <= 170 && canIncrease) {
-    playerExtraWidth++;
-  }
-  if (playerWidth >= 120 && !canIncrease) {
-    playerExtraWidth--;
-    if (playerWidth <= 120) {
-      canIncrease = true;
-    }
-  }
-  if (playerWidth >= 170) {
-    canIncrease = false;
-  }
+  // if (playerX > canvas.width - 100) { // Player hits the right side of the game canvas
+  //   playerX = 0; // Return back to original position
+  // }
+
+  // INFO: Idle animation using width-scaling:
+
+  // if (playerWidth <= 170 && canIncrease) {
+  //   playerExtraWidth++;
+  // }
+  // if (playerWidth >= 120 && !canIncrease) {
+  //   playerExtraWidth--;
+  //   if (playerWidth <= 120) {
+  //     canIncrease = true;
+  //   }
+  // }
+  // if (playerWidth >= 170) {
+  //   canIncrease = false;
+  // }
 }
 
 let index = 1;
-let canMove = false;
 export function drawBackgroundImage() {
   canvasMobile.style.backgroundImage = backgrounds[index].path;
   //"url(images/background/tokyo-streets.png)";
@@ -153,14 +185,14 @@ export function drawBackgroundImage() {
   //ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
   if (index == 2) {
     index = 0;
-    canMove = false;
   } else {
     index++;
-    canMove = true;
   }
 }
 
 // NOTE: Specific case to send and get this to work in index.html:
+// Usually all the elements are inside game loop but in this case the buttons
+//are built once in index.html. Decide yourself which suits better for your project.
 window.drawBackgroundImage = drawBackgroundImage; //<-- creates a global window variable
 
 // UIbutton.addEventListener(
@@ -174,30 +206,31 @@ window.drawBackgroundImage = drawBackgroundImage; //<-- creates a global window 
 // const background = new Image();
 // background.src = backgrounds[0].path;
 
-function objectMoveLoop() {
-  if (canMove) {
-    playerY += 0.2;
-    playerX += 0.3;
-    playerWidth += 20;
-  }
+export function movePlayerLeft() {
+  playerX -= 20;
 }
 
-export function movePlayer() {
+export function movePlayerRight() {
   playerX += 20;
 }
-window.movePlayer = movePlayer; // NOTE: this was needed as a hack to make it run in index.html.
-//HTML expects the movePlayer to be on the global window object. The new JavaScript module system
-//doesn't add anything to the global namespace, to avoid namespace pollution.
+
+window.movePlayerLeft = movePlayerLeft;
+window.movePlayerRight = movePlayerRight;
+
+// NOTE: this was needed as a hack to make it run in index.html.
+//HTML expects the movePlayerLeft to be on the global window object. The new JavaScript module system
+//doesn't add anything to the global namespace to avoid namespace pollution.
 
 //-------------GAME LOOP -------------------//
 
 function updateGame() {
   checkCanvasVisibility();
-  // Clear the canvas
+  // Clear the whole canvas. You can also define specific areas to clear to avoid "overcleaning".
+  // Usually you clear only the areas that are drawn onto within the same drawing function.
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  drawPlayerImage();
-  objectMoveLoop();
+  drawStaticPlayerImage();
+
   requestAnimationFrame(updateGame);
   // Draw the UI button using the drawButton function
 

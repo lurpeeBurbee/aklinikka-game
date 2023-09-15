@@ -14,18 +14,20 @@
     <div id="gameCanvasWrapper">
       <canvas id="gameCanvasMobile" class="mobile-canvas"></canvas>
       <canvas id="gameCanvasDesktop" class="desktop-canvas"> </canvas>
-      <div class="button leftbutton" onclick="movePlayer()">
-        <p>Liikuta smileytä</p>
-      </div>
-      <script type="module">
-        import { movePlayer } from "/js/maingame.js";
-      </script>
-      <!-- NOTE: This element and its functions could also be inside the game loop.
-        The element being here in the index.html makes it a fixed element so it won't
+
+      <!-- NOTE: These button-elements and its functions could also be inside the game loop.
+        The elements being here in the index.html makes it a fixed element so it won't
         consume resources in the game loop. It will be read only once when the game loads
         and everytime it's clicked -->
-      <div class="button rightbutton" onclick="drawBackgroundImage()">
-        <p>Seuraava tilanne</p>
+      <div class="button leftbutton" onclick="movePlayerLeft()">
+        <p>Left</p>
+      </div>
+
+      <div class="button middlebutton" onclick="drawBackgroundImage()">
+        <p>Switch background</p>
+      </div>
+      <div class="button rightbutton" onclick="movePlayerRight()">
+        <p>Right</p>
       </div>
       <!-- <script type="module"> import { switchBackground } from '/js/maingame.js';</script> -->
 
@@ -38,8 +40,8 @@
       </div>
       <div class="startinfo">
         <p>
-          Peli toimii mobiililla ja tabletilla. Pienennä ruutua käynnistääksesi
-          pelin.
+          Peli on optimoitu mobiilille ja tabletille. Vedä ruutu pienemmäksi
+          sivusta käynnistääksesi pelin.
         </p>
       </div>
     </div>

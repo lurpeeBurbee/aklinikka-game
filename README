@@ -1,3 +1,31 @@
+GRAAFIKOILLE:
+
+images/sprites/animation-template.png w:270 h:90.
+Jokainen piirrettävä animaatioruutu on 90px leveä.
+
+KOODAREILLE:
+drawImage:n parametrit ovat tällöin ensimmäisen framen kohdalla:
+
+drawImage(animation-template,
+0, <-- mistä lähdetään piirtämään X(vasemmalta oikealle)
+0, < -- mistä lähdetään piirtämään Y (ylhäältä alaspäin)
+90, <-- minkä levyinen pala koko kuvatiedostosta piirretään X
+90, <-- minkä levyinen pala koko kuvatiedostosta piirretään Y
+playerX, <-- missä kohtaa pelialuetta objekti on X
+playerY + 100, <-- missä kohtaa pelialuetta objekti on Y (100 vie ylhäältä 100px poispäin, jottei piirry toisen objektin päälle)
+90, <-- Piirrettävän objektin lopullinen leveys
+playerHeight) <-- .. ja korkeus
+
+Piirron aloituskohta: 0px
+Piirron leveys aina: 90px
+Aloita siis ensimmäinen animaatioframe piirtämään kohdasta 0.
+Seuraava frame alkaa kohdasta 90 ja kolmas kohdasta 180.
+
+Katso tästä tarkemmin, mitä parametrejä voit antaa drawImage:lle:
+https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage
+
+---
+
 Itse rakennettava koodilla:
 
 Alustus (HTML, CSS)
@@ -40,7 +68,7 @@ Kikka-kakkoset:
    SetInterval can be used in more specific cases to gain more control over the framerate:
    https://www.w3schools.com/jsref/met_win_setinterval.asp
 
-2. Event Listener works mainly on default DOM elements. If you need to listen to instantiated objects (firstbutton.addEventListener('resize', () =>
+2. Event Listener works mainly on default DOM elements (div, button, canvas, footer..). If you need to listen to instantiated objects (firstbutton.addEventListener('resize', () =>
    console.log(firstbutton.width, firstbutton.height));) put it inside updateGame loop. Otherwise it will only log the message once.
 3. Can't use a function or variable from game.js in index.html (check case drawBackgroundImage). Add "window.drawBackgroundImage = drawBackgroundImage" to the same file where the function has been declared. This makes it global.
 
