@@ -20,13 +20,15 @@
         consume resources in the game loop. It will be read only once when the game loads
         and everytime it's clicked -->
       <div class="button leftbutton" onclick="movePlayerLeft()">
+        <p>Outside gameloop:</p>
         <p>Left</p>
       </div>
 
       <div class="button middlebutton" onclick="drawBackgroundImage()">
-        <p>Switch background</p>
+        <p>Outside gameloop: Switch background</p>
       </div>
       <div class="button rightbutton" onclick="movePlayerRight()">
+        <p>Outside gameloop:</p>
         <p>Right</p>
       </div>
       <!-- <script type="module"> import { switchBackground } from '/js/maingame.js';</script> -->

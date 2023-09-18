@@ -1,10 +1,17 @@
 // NOTE: We don't need to import Button class, since it's already included in the drawButton
 import { drawButton, Button } from "/js/classes/button.js";
+import {
+  handleKeyDown,
+  handleKeyUp,
+  acceleration,
+  dx,
+  dy,
+} from "/js/modules/input.js";
 import { infotext } from "/js/modules/info.js";
 import { backgrounds } from "/js/modules/backgrounds.js";
-// Define variables
 
-// Get the canvas element and its 2D rendering context
+// Define variables:
+// Get the canvas element and its 2D rendering context:
 let canvas = document.getElementById("gameCanvasMobile"); // Set initial value to canvasMobile
 let ctx = canvas.getContext("2d");
 const canvasMobile = document.getElementById("gameCanvasMobile");
@@ -64,15 +71,13 @@ function updateCanvasVisibility() {
   document.dispatchEvent(canvasVisibilityChangeEvent);
 }
 
-// Add only one event listener for the 'canvasVisibilityChange' event
+// Add only one event listener to the 'canvasVisibilityChange' event
 document.addEventListener("canvasVisibilityChange", function () {
   if (canvasMobile.classList.contains("visible")) {
     canvas = canvasMobile;
     ctx = ctxMobile;
   } else {
     canvas = canvasDesktop;
-
-    //ctx = ctxDesktop;
   }
 
   // NOTE: game canvas size
@@ -87,7 +92,6 @@ window.addEventListener("resize", updateCanvasVisibility);
 canvasMobile.addEventListener("canvasVisibilityChange", function () {
   console.log("mobile visibility changed");
   canvas = canvasDesktop;
-  //ctx = ctxDesktop; Stop reading since we are not using desktop for now.
 });
 canvasDesktop.addEventListener("canvasVisibilityChange", function () {
   console.log("desktop visibility changed");
@@ -129,8 +133,8 @@ function drawStaticPlayerImage() {
 
   // WARNING: Objects stack up on each other, thus the BG-image must be drawn first.
   // Otherwise the first image will cover everything.
-  // Example:
-  //ctx.drawImage(background-image);
+  // Correct hierarchy:
+  // ctx.drawImage(background-image);
   // ctx.drawImage(player);
   // ctx.drawImage(smoke-in-front);
   ctx.drawImage(player, playerX, playerY, playerWidth, playerHeight); //INFO: Parameters: Image to draw, x- and y-coordinates, width and height
@@ -195,68 +199,66 @@ export function drawBackgroundImage() {
 //are built once in index.html. Decide yourself which suits better for your project.
 window.drawBackgroundImage = drawBackgroundImage; //<-- creates a global window variable
 
-// UIbutton.addEventListener(
-//   "load",
-//   () => {
-
-// alert(UIbutton);
-//   },
-//   false
-// );
-// const background = new Image();
-// background.src = backgrounds[0].path;
-
+// Export into index.html:
 export function movePlayerLeft() {
-  playerX -= 20;
+  playerX -= 2;
 }
 
 export function movePlayerRight() {
-  playerX += 20;
+  playerX += 2;
 }
 
 window.movePlayerLeft = movePlayerLeft;
 window.movePlayerRight = movePlayerRight;
-
-// NOTE: this was needed as a hack to make it run in index.html.
+// NOTE: this is needed as a hack to make the functions run in index.html.
 //HTML expects the movePlayerLeft to be on the global window object. The new JavaScript module system
 //doesn't add anything to the global namespace to avoid namespace pollution.
 
+function canvasButtons() {
+  const firstbutton = drawButton(
+    canvas,
+    ctx,
+    canvas.width * 0.08,
+    canvas.height * 0.78,
+    canvas.width * 0.4,
+    canvas.height * 0.1,
+    "#FF0000",
+    "Kyllä-button inside game loop",
+    movePlayerLeft
+  );
+
+  const secondbutton = drawButton(
+    canvas,
+    ctx,
+    firstbutton.x + firstbutton.width * 1.1,
+    firstbutton.y, //Replicates the y-position of firstbutton
+    firstbutton.width,
+    firstbutton.height,
+    firstbutton.color,
+    "Ei-button inside game loop",
+    movePlayerRight
+  );
+}
+
+window.addEventListener("keydown", handleKeyDown);
+window.addEventListener("keyup", handleKeyUp);
 //-------------GAME LOOP -------------------//
 
 function updateGame() {
+  playerX += dx; // INFO: moves the player
+  playerY += dy;
+  console.log("dx: " + dx + " dy: " + dy);
   checkCanvasVisibility();
   // Clear the whole canvas. You can also define specific areas to clear to avoid "overcleaning".
   // Usually you clear only the areas that are drawn onto within the same drawing function.
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   drawStaticPlayerImage();
+  canvasButtons();
 
   requestAnimationFrame(updateGame);
+
   // Draw the UI button using the drawButton function
-
-  // const firstbutton = drawButton(
-  //   canvas,
-  //   ctx,
-  //   canvas.width * 0.08,
-  //   canvas.height * 0.88,
-  //   canvas.width * 0.4,
-  //   canvas.height * 0.1,
-  //  '',
-  //   "Kyllä",
-  //   ''
-  // );
-
-  // const secondbutton = drawButton(
-  //   canvas,
-  //     ctx,
-  //     firstbutton.x + firstbutton.width * 1.1,
-  //     firstbutton.y,
-  //     firstbutton.width,
-  //     firstbutton.height,
-  //     'red',
-  //     "Ei",
-  //     ''
-  //   );
 
   // Call the updateGame function again using requestAnimationFrame
 }
