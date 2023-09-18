@@ -17,7 +17,7 @@ playerY + 100, <-- missä kohtaa pelialuetta objekti on Y (100 vie ylhäältä 1
 90, <-- Piirrettävän objektin lopullinen leveys
 playerHeight) <-- .. ja korkeus
 
-Piirron aloituskohta: 0px
+Piirron aloituskohta: x0px y0px
 Piirron leveys aina: 90px
 Aloita siis ensimmäinen animaatioframe piirtämään kuvatiedoston kohdasta 0.
 Seuraava frame alkaa kohdasta 90 ja kolmas kohdasta 180, kun mennään oikealle.
