@@ -1,54 +1,81 @@
 body {
   background-color: #111;
+  margin: 0;
+  padding: 0;
 }
 
-.container {
+.maincontainer {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  top: 2%;
+  left: 5%;
+  width: 89vw;
+  height: 99vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-/* canvas {
+.canvas-container-bg,
+.canvas-container-ui {
+  display: flex;
+  width: 100%;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.canvas-container-bg {
+  flex: 4;
+}
+.canvas-container-ui {
+  flex: 1;
+}
+.canvas-container-gameobjects {
+  width: 100%;
+  display: block;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-} */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 
 #background-canvas {
-  background-color: darkgreen;
+  position: relative;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  background-color: darkgreen;
 }
 
 #ui-canvas {
+  position: relative;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-color: darkred;
+  bottom: 0;
 }
 
 
 #gameobjects-canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
   background-color: purple;
 }
 
-/* Mobile Version */
-@media (max-width: 767px) {
-  /* Adjust styles for mobile devices */
+.canvas-text {
+  position: absolute;
+  color: rgb(255, 255, 255);
+  font-size: 100%;
+  font-weight: bold;
+  border: 1px solid;
+  width: 100%;
+  z-index: 1;
+  top: 50%;
 }
-
-/* Tablet Version */
-@media (min-width: 768px) and (max-width: 991px) {
-  /* Adjust styles for tablet devices */
-}
-
-/* Desktop Version */
-@media (min-width: 992px) and (max-width: 1199px) {
-  /* Adjust styles for desktop devices */
-}
-
-/* Extra Large Screens */
-@media (min-width: 1200px) {
-  /* Adjust styles for extra large screens */
-}
+ 
