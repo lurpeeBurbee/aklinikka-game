@@ -12,8 +12,8 @@ export class Button {
     // Draw the button on the canvas
     ctx.fillStyle = this.color;
     ctx.fillRect(this.x, this.y, this.width, this.height);
+    
     // Draw the text on the button
-
     const maxWidth = 150; // Maximum width for each line
 
     function wrapText(ctx, text, x, y, maxWidth, lineHeight) {

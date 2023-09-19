@@ -102,6 +102,10 @@ canvasDesktop.addEventListener("canvasVisibilityChange", function () {
 // Player sprite image
 const player = new Image(); // Create new img element
 player.src = "/images/sprites/animation-template.png";
+
+const player2 = new Image(); // Create fully animated element
+player2.src = "/images/sprites/animations-full.png";
+
 let playerX = 0;
 let playerY = 0;
 let playerWidth = 0;
@@ -180,6 +184,55 @@ function drawStaticPlayerImage() {
   //   canIncrease = false;
   // }
 }
+const player2StartFramesX = [0, 90, 180];
+const player2StartFramesY = [0, 90, 180, 270, 360];
+function drawAnimatedPlayerImage(x, y) {
+  // INFO: Clear the drawn image in one frame using the area defined with parameters:
+  ctx.clearRect(x, y, playerWidth, playerHeight);
+
+  playerWidth = 90;
+  playerHeight = 90;
+  let yIndex;
+  switch (true) {
+    case dy < 0:
+      yIndex = 1;
+      break;
+    case dy > 0:
+      yIndex = 2;
+      break;
+    case dx < 0:
+      yIndex = 3; // Left animation
+      break;
+    case dx > 0:
+      yIndex = 4; // Right animation
+      break;
+    default:
+      yIndex = 0; // Default animation (no movement)
+      break;
+  }
+  ctx.drawImage(
+    player2,
+    player2StartFramesX[startFrameIndex],
+    player2StartFramesY[yIndex],
+    90,
+    90,
+    x,
+    y,
+    playerWidth,
+    playerHeight
+  );
+
+  // Create animation on the lower Player:
+  timer++;
+  if (timer >= 30) {
+    timer = 0;
+    startFrameIndex++;
+  }
+
+  if (startFrameIndex == 3) {
+    startFrameIndex = 0;
+  }
+}
 
 let index = 1;
 export function drawBackgroundImage() {
@@ -252,6 +305,8 @@ function updateGame() {
   // Clear the whole canvas. You can also define specific areas to clear to avoid "overcleaning".
   // Usually you clear only the areas that are drawn onto within the same drawing function.
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  drawAnimatedPlayerImage(playerX + 100, playerY + 100);
 
   drawStaticPlayerImage();
   canvasButtons();
