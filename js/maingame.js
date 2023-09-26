@@ -164,8 +164,8 @@ function drawStaticPlayerImage() {
     90,
     playerHeight
   );
-
-  // if (playerX > canvas.width - 100) { // Player hits the right side of the game canvas
+  // Player hits the right side of the game canvas
+  // if (playerX > canvas.width - 100) {
   //   playerX = 0; // Return back to original position
   // }
 
@@ -276,7 +276,7 @@ function canvasButtons() {
     canvas.width * 0.4,
     canvas.height * 0.1,
     "#FF0000",
-    "Kyllä-button inside game loop",
+    "Inside game loop: Left-button",
     movePlayerLeft
   );
 
@@ -288,7 +288,7 @@ function canvasButtons() {
     firstbutton.width,
     firstbutton.height,
     firstbutton.color,
-    "Ei-button inside game loop",
+    "Inside game loop: Right-button",
     movePlayerRight
   );
 }

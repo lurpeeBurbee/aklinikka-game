@@ -58,7 +58,7 @@ Prettier
 ESLint
 JavaScript (ES6)
 Highlight 2: (NOTE, WARNING, HACK, FIXME, INFO etc..)
-File > Preferences > Settings. On the left, scroll down to TODO highlight. Click the link "Edit in settings.json". Check examples.
+File > Preferences > Settings. On the left, scroll down to TODO highlight. Click the link "Edit in settings.json". Check examples there.
 
 Plugins for designers:
 Image Preview
