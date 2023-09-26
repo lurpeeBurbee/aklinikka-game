@@ -15,8 +15,8 @@ export let dx = 0;
 export let dy = 0;
 
 // Set the acceleration and maximum speed of the player
-export const acceleration = 2;
-export const maxSpeed = 6; // NOTE: Not built yet
+const acceleration = 1;
+const maxSpeed = 5;
 
 // Function to handle keydown events
 function handleKeyDown(event) {
@@ -41,6 +41,15 @@ function handleKeyUp(event) {
   ) {
     dx = 0;
     dy = 0;
+  }
+}
+// Function to limit the speed of the player
+export function limitSpeed() {
+  const speed = Math.sqrt(dx * dx + dy * dy);
+  if (speed > maxSpeed) {
+    const factor = maxSpeed / speed;
+    dx *= factor;
+    dy *= factor;
   }
 }
 

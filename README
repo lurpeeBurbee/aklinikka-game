@@ -48,7 +48,7 @@ Local host on phone:
 Inner browser:
 https://www.youtube.com/watch?v=SoiPVysSlWs
 
-Documentation://TODO:
+Documentation:
 Esim. Draw.io-linkki
 
 Plugins for coders:
@@ -87,7 +87,7 @@ Kokeile kaikki path-vaihtoehdot:
 
 ---
 
-vscode.dev-link on kätevä: kirjoita TODO:, FIXME: tms. > oik. hiiri > share > pastee linkki minne vaan koodia. Linkki avautuu browserissa.
+vscode.dev-link on kätevä: kirjoita TODO:, FIXME: tms. > oik. hiiri > share > pastea linkki minne vaan koodia. Linkki avautuu browserissa.
 
 By default, clicking on a vscode.dev-link will open the browser version of Visual Studio Code (VSCode) and navigate to the specific line of code.
 However, if you prefer to open the link in the VSCode application itself, you can follow these steps:
@@ -101,5 +101,3 @@ However, if you prefer to open the link in the VSCode application itself, you ca
 7. Open the file that contains the line referenced by the vscode.dev-link.
 8. In the file, go to the line referenced by the vscode.dev-link.
 9. Now, you can click on the vscode.dev-link URL, and it should open the link in the VSCode application itself, taking you to the specific line of code.
-
-By following these steps, you can open vscode.dev-links directly in the VSCode application, allowing you to navigate to specific lines of code within your project.

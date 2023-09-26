@@ -3,7 +3,7 @@ import { drawButton, Button } from "/js/classes/button.js";
 import {
   handleKeyDown,
   handleKeyUp,
-  acceleration,
+  limitSpeed,
   dx,
   dy,
 } from "/js/modules/input.js";
@@ -104,7 +104,7 @@ const player = new Image(); // Create new img element
 player.src = "/images/sprites/animation-template.png";
 
 const player2 = new Image(); // Create fully animated element
-player2.src = "/images/sprites/animations-full.png";
+player2.src = "/images/sprites/character-animation.png";
 
 let playerX = 0;
 let playerY = 0;
@@ -192,7 +192,7 @@ function drawAnimatedPlayerImage(x, y) {
 
   playerWidth = 90;
   playerHeight = 90;
-  let yIndex;
+  let yIndex; // Controls the animationsheet row
   switch (true) {
     case dy < 0:
       yIndex = 1;
@@ -301,6 +301,7 @@ function updateGame() {
   playerX += dx; // INFO: moves the player
   playerY += dy;
   console.log("dx: " + dx + " dy: " + dy);
+  limitSpeed();
   checkCanvasVisibility();
   // Clear the whole canvas. You can also define specific areas to clear to avoid "overcleaning".
   // Usually you clear only the areas that are drawn onto within the same drawing function.
