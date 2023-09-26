@@ -32,15 +32,21 @@ Itse rakennettava koodilla:
 
 Alustus (HTML, CSS)
 
-Frames per second (sisäänrakennettu RequestAnimationFrame() ja modifioitava SetInterval())
-Pelialueen reunat
-Kiihtyminen ja vauhti
-Colliderit
-Input (keyboard, touch)
-Äänet
-Efektit
+1. Taustakuva (Canvakseen vai Elementtiin)
+2. Canvaksen kokomääritys, pelialueen reunat
+3. DrawCircle and move circle, buttons
+4. Hahmon piirto Canvakseen drawImage():lla
+5. Hahmon liikuttaminen
+6. Hahmon animointi spritesheetillä
+7. Colliderit
+8. Export Import
+9. Frames per second (sisäänrakennettu RequestAnimationFrame() ja modifioitava SetInterval())
+10. Kiihtyminen ja vauhti
+11. Input (keyboard, touch)
+12. Äänet
+13. Efektit
 
-TODO: Mobile "Add to home screen"? (the game's shortcut on phone)
+TODO: Mobile "Add to home screen"? (game shortcut on phone)
 
 Local host on phone:
 192.168.1.102:5500
