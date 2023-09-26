@@ -32,7 +32,7 @@ Itse rakennettava koodilla:
 
 Alustus (HTML, CSS)
 
-Frames per second
+Frames per second (sisäänrakennettu RequestAnimationFrame() ja modifioitava SetInterval())
 Pelialueen reunat
 Kiihtyminen ja vauhti
 Colliderit
@@ -65,7 +65,7 @@ Image Preview
 
 Kikka-kakkoset:
 
-1. Prefer RequesAnimationFrame() instead of SetInterval()
+1. Prefer RequestAnimationFrame() instead of SetInterval()
    https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
    SetInterval can be used in more specific cases to gain more control over the framerate:
    https://www.w3schools.com/jsref/met_win_setinterval.asp
