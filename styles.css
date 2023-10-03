@@ -43,7 +43,7 @@ body
     outline: none;
 }
 
-.btn-hover
+.btn:hover
 {
     border-color: black;
 }
